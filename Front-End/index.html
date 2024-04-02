@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Preferences</title>
+</head>
+<body>
+    <h1>User Preferences</h1>
+    
+    <form id="preferencesForm">
+        <label for="age">Age:</label>
+        <select name="age" id="age">
+            <option value="18-21">18-21</option>
+            <option value="22-29">22-29</option>
+            <option value="30-39">30-39</option>
+            <option value="40-49">40-49</option>
+            <option value="50-59">50-59</option>
+            <option value="60+">60+</option>
+        </select>
+        <!--I want to change this to actual weights-->
+        <label for="weight">Weight:</label>
+        <select name="weight" id="weight">
+            <option value="underweight">Underweight</option>
+            <option value="normal">Normal</option>
+            <option value="overweight">Overweight</option>
+            <option value="obese">Obese</option>
+        </select>
+        <!--I want to change this to actual heights-->
+        <label for="height">Height:</label>
+        <select name="height" id="height">
+            <option value="short">Short</option>
+            <option value="average">Average</option>
+            <option value="tall">Tall</option>
+        </select>
+        
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other ... oh well</option>
+        </select>
+        
+        <label for="smokes">Smokes:</label>
+        <select name="smokes" id="smokes">
+            <option value="Frenquently">Frenquently</option>
+            <option value="Socially">Socially</option>
+            <option value="Casually">Casually</option>
+            <option value="Never">Never</option>
+        </select>
+        
+        <label for="drinks">Drinks:</label>
+        <select name="drinks" id="drinks">
+            <option value="Frenquently">Frenquently</option>
+            <option value="Socially">Socially</option>
+            <option value="Casually">Casually</option>
+            <option value="Never">Never</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script src="script.js"></script>
+</body>
+</html>
