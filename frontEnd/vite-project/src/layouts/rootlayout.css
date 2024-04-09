@@ -1,0 +1,123 @@
+/* Container for both buttons */
+.login-signup-container {
+    display: flex;
+    justify-content: center; /* Align items horizontally at the center */
+    align-items: center; /* Align items vertically */
+    gap: 5px; /* Space between the items */
+    
+  }
+  
+  /* Styling for individual button containers */
+  .login, .signup {
+    padding: 8px; /* Add some padding for visual appeal */
+    /* Add any additional styling you need for the buttons */
+    margin-left:50%;
+    width: 10%; /* Adjust width as needed, or use 'auto' for width based on content */
+  height: 10%;
+  justify-content:center;
+  align-items: center;
+  
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .parent-div {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    /* Full viewport width */
+    color:white;
+ 
+    margin: 0; /* Reset any default margin */
+  }
+  
+  .outer-div {
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    height: 90vh; /* 90% of the viewport height */
+    width: 60vw; /* 60% of the viewport width */
+    overflow: hidden; /* Prevents scrolling */
+  }
+  
+  .lottie-animation {
+    width: 80%; /* Increased to take up more width of the container */
+    height: auto; /* Maintains the aspect ratio of the animation */
+    max-height: 100%; /* Ensures the animation doesn't exceed the container's height */
+  }
+  
+  
+  .bottom-left-container {
+    flex: 1; /* Adjust flex-grow as needed */
+    display: flex;
+    /*align-items: flex-end; /* Align children to the bottom */
+    justify-content: flex-start; /* Align children to the left */
+    margin-top: auto;
+    width: 50%;
+    gap: 0px;
+     /* This allows each child div to grow and fill the space */
+  }
+
+  .login-signup-container {
+    width: 50%; /* Adjust as needed */
+    /* Add any additional styling for the button container */
+  }
+
+  .rounded-image {
+    border-radius: 50%; /* This will make the image fully round */
+  }
+  
+
+
+body{
+    background-color: beige; 
+}
+
+.div-buttons{
+   
+    
+    
+    height:10%;
+    margin-top:20%;
+    margin-right:8%;
+}
+  .header-style{
+   
+  /* Set a height (or min-height as needed) */
+  font-size: 40px;
+  font-weight: bold;
+  color:black;
+  
+  }
+
+  .main-text{
+    color:black;
+    font-weight:bold;
+    font-size:20px;
+  }
+
+  .button-large {
+    font-size: 20px; /* Larger font size */
+    padding: 10px 20px; /* Top and bottom padding, left and right padding */
+    width: auto; /* Adjust width as needed, or use 'auto' for width based on content */
+    height: auto; /* Adjust height as needed, or use 'auto' for height based on content */
+    border-radius: 5px; /* Optional: for rounded corners */
+    /* Additional styling */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border: 1px solid transparent; /* Optional: for a border */
+    background-color: #007bff; /* Background color */
+    color: white; /* Text color */
+    /* Add hover effect */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+   
+  }
+  
+  .button-large:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+    color: #fff;
+    border-color: #0056b3;
+  }
+  

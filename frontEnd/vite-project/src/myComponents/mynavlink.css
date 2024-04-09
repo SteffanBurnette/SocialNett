@@ -1,0 +1,32 @@
+/* Style for the header */
+header {
+    position: fixed; /* Keeps the header at the top */
+    top: 0; /* Aligns the header at the top of the page */
+    left: 0; /* Aligns the header to the left */
+    width: 100%; /* Makes the header full width */
+    background: #232020; /* Background color for the header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for depth */
+    z-index: 1000; /* Ensures the header stays above other content */
+    opacity: 1;
+}
+
+/* Style for the container of the links */
+h1 {
+    display: flex; /* Uses flexbox for layout */
+    justify-content: space-around; /* Distributes space around the links */
+    align-items: center; /* Centers items vertically */
+    margin: 0; /* Removes default margin */
+    padding: 0.5rem 1rem; /* Adds padding around the header */
+}
+
+/* Style for individual links */
+h1 a {
+    text-decoration: none; /* Removes underline from links */
+    color: beige; /* Color for the links */
+    font-size: 1rem; /* Sets font size */
+    transition: color 0.3s; /* Adds a transition effect on hover */
+}
+
+h1 a:hover {
+    color: #9628bd; /* Color change on hover */
+}
