@@ -3,14 +3,14 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Full height of the viewport */
-    width: 250px; /* Adjust the width as needed */
+    height: 90vh; /* Full height of the viewport */
+    width: 130vh; /* Adjust the width as needed */
     position: fixed;
-    right: 121%;
-    padding-top: 5%;
-    margin-top: 112%;
+    left: 0; /* Adjusted to place the sidebar on the left */
+    margin-top: 1%;
+    
     top: 0;
-    background-color: rgb(0, 0, 0); /* Your preferred background color */
+    background-color: rgb(83, 60, 34); /* Your preferred background color */
     overflow-y: auto; /* Make it scrollable */
     color: white
 }

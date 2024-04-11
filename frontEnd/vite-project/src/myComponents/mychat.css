@@ -1,0 +1,78 @@
+.custom-background {
+    background-color: rgba(128, 128, 128, 0.5); /* Grey with 50% opacity */
+  }
+
+  .chat-area {
+    background-color: rgba(128, 128, 128, 0.5); /* Grey with 50% opacity */
+    flex-grow: 1;
+    overflow-y: auto; /* Add scroll for overflow content */
+    padding: 20px;
+    /* Add additional styling as needed */
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    justify-content: space-between; /* Space between children */
+    max-height: 82%; /* or any appropriate value */
+    
+}
+
+.input-field {
+  width: 10%; /* Full width of the container */
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.main-container {
+  display: flex;
+  width: 170vh; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  overflow: hidden; /* Hides any overflow */
+}
+
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* Full height of the viewport */
+  width: 20%; /* Adjust the width as needed */
+  position: absolute;
+  left: 0; /* Adjusted to place the sidebar on the left */
+  margin-top: 1%;
+  
+  top: 0;
+  background-color: rgb(83, 60, 34); /* Your preferred background color */
+  overflow-y: auto; /* Make it scrollable */
+  color: white
+}
+
+.chat-container {
+  flex-grow: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column; /* Aligns chat area and input container vertically */
+  
+}
+
+
+.menu {
+  flex-grow: 1;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  
+  opacity: 12;
+}
+
+.menu-item {
+  padding: 10px;
+  transition: background-color 0.5s ease;
+  background-color:black;
+  cursor: pointer;
+  border-radius:10px;
+}
+
+.menu-item:hover {
+  background-color: beige; /* Color changes on hover */
+  color: black;
+}

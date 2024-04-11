@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    width: 100%; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+}
+
+.sidebarz {
+    width: 250px; /* Adjust the width of the sidebar as needed */
+    background-color: #f0f0f0; /* Sidebar background color */
+    padding: 20px;
+    overflow-y: auto; /* Add scroll for overflow content */
+}
+
+.main-content {
+    flex-grow: 1; /* Fill the remaining width */
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    justify-content: space-between; /* Space between children */
+}
+
+.chat-area {
+    flex-grow: 1;
+    overflow-y: auto; /* Add scroll for overflow content */
+    padding: 20px;
+    /* Add additional styling as needed */
+}
+
+.input-field-container {
+    padding: 10px;
+    margin-bottom: 3%; /* Adds space at the bottom, raising the container */
+    background-color: black; /* Background color of the input field area */
+    border-top: 1px solid #ccc; /* Border at the top of the input field area */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for a raised effect */
+    opacity: 0.5;
+    color:white;
+    /* Increase width as needed */
+    width: 90%; /* Example: 80% of the parent container */
+    max-width: 600px; /* Or a fixed max-width for large screens */
+     /* Center align the container */
+    transform: translateX(-50%); /* Adjust horizontal position */
+  /* Positioning relative to the nearest positioned ancestor */
+    bottom: 10px; /* Distance from the bottom of the parent */
+     /* Make it dynamic */
+    position:absolute;
+     margin-top: auto; /* Pushes it to the bottom */
+}
+
+
+.input-field {
+    width: 100%; /* Full width of the container */
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

@@ -10,6 +10,8 @@ import axios from 'axios'
 import "./signup.css"
 import Lottie from "lottie-react"
 import animationData from "/src/animations/alert.json"
+import MyLoadingScreen from "./MyLoadingScreen.jsx"
+import "./loading.css"
 
 //Modal styling
 const style = { //The styling of the modal
@@ -81,6 +83,7 @@ export default function MyLogin() {
   const [errorMessage, setErrorMessage] = useState('');
   // useState for controlling the modal open state
 const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+const [isLoading, setIsLoading] = useState(false); //Controls the loading screen
 
 // Call this function to open the modal
 const showErrorModal = (message) => {
@@ -101,6 +104,7 @@ async function handleSubmit(){
     console.log(username + " " + password)
     //alert("Information Submitted!");
    // event.preventDefault();
+   setIsLoading(true); // Start loading
    try {
     const response = await axios.post('http://localhost:5000/login', { "username": username, "password" : password });
     console.log(response.data);
@@ -131,12 +135,15 @@ async function handleSubmit(){
     setPassword('');
     
 }
+setIsLoading(false); // Stop loading regardless of success or error
  
   }
 
 
   return (
     <div>
+        {isLoading ? ( <div className = "loading-screen"><MyLoadingScreen/> </div> // This can be a spinner or any loading component
+        ) : (<div>
       <Button onClick={handleOpen}
        sx={{ 
         border: '2px solid black',
@@ -235,6 +242,6 @@ async function handleSubmit(){
   errorMessage={errorMessage} 
   onClose={handleCloseErrorModal} 
 />
-    </div>
+        </div>)}</div>
   );
 }

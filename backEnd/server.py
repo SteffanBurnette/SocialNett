@@ -104,11 +104,51 @@ def logout():
 def get_advises():
     
     user_id = mysession["userid"]
-    result = supabase.table('Advice').select('prompt, response').eq('userid', user_id).execute()
+    result = supabase.table('Advice').select('prompt, response, id').eq('userid', user_id).execute()
     if result.data:
         return jsonify(result.data), 200
     else:
         return jsonify({"message":  "No advises found"}), 404
+
+
+@app.route("/createadvice", methods = ["POST"])
+def  create_advice():
+    data = request.json
+    prompt= data['prompt']
+    response = advisor(prompt)
+    newdata = {
+        "prompt": prompt,
+        "response": response,
+        "userid": mysession["userid"]
+    }
+
+    result = supabase.table("Advice").insert(newdata).execute()
+
+    if result.data:
+         print("Insert successful:", result.data), 200
+         return result.data
+    else:
+        print("Error:")
+        return None
+    
+
+
+@app.route("/deleteadvice/<int:id>", methods=["DELETE"])
+def delete_advice(id):
+    
+    try:
+        # Assuming 'userid' and 'adviceid' are columns in your 'Advice' table
+        result = supabase.table("Advice").delete().eq("userid", mysession["userid"]).eq("id", id).execute()
+
+        if result:
+            print("Delete successful for advice ID:", id)
+            return {"message": "Advice deleted successfully"}, 200
+        else:
+            print("Delete error:", result.error)
+            return {"message": "Deletion failed"}, 400
+    except Exception as e:
+        print("Error:", e)
+        return {"message": str(e)}, 500
 
 
 
