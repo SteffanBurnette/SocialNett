@@ -151,6 +151,92 @@ def delete_advice(id):
         return {"message": str(e)}, 500
 
 
+@app.route("/getgoals", methods = ["GET"])
+def get_goals():
+    
+    user_id = mysession["userid"]
+    result = supabase.table('Goals').select('title, goal, id').eq('userid', user_id).execute()
+    if result.data:
+        return jsonify(result.data), 200
+    else:
+        return jsonify({"message":  "No Goals found"}), 404
+
+@app.route("/deletegoal/<int:id>", methods=["DELETE"])
+def delete_goal(id):
+    
+    try:
+        # Assuming 'userid' and 'adviceid' are columns in your 'Advice' table
+        result = supabase.table("Goals").delete().eq("userid", mysession["userid"]).eq("id", id).execute()
+
+        if result:
+            print("Delete successful for Goal ID:", id)
+            return {"message": "Goal deleted successfully"}, 200
+        else:
+            print("Delete error:", result.error)
+            return {"message": "Deletion failed"}, 400
+    except Exception as e:
+        print("Error:", e)
+        return {"message": str(e)}, 500
+
+
+@app.route("/updategoal/<int:id>", methods=["PUT"])
+def update_goal(id):
+    try:
+        # Assuming 'userid' is a column in your 'Goals' table
+        # And that the request contains the new data for the goal
+        data = request.json
+        updated_goal_data = {
+            "title": data.get("title"),
+            "goal": data.get("goal")
+            # Include other goal fields here if needed
+        }
+
+        # Update the goal in the database
+        result = supabase.table("Goals").update(updated_goal_data).eq("userid", mysession["userid"]).eq("id", id).execute()
+
+        if result.data:
+            print("Update successful for Goal ID:", id)
+            return {"message": "Goal updated successfully"}, 200
+        else:
+            print("Update error:", result.error)
+            return {"message": "Update failed"}, 400
+    except Exception as e:
+        print("Error:", e)
+        return {"message": str(e)}, 500
+
+
+@app.route("/creategoal", methods=["POST"])
+def create_goal():
+    # Ensure the user is logged in and has a session
+    if "userid" not in mysession:
+        return jsonify({"message": "User not logged in"}), 401
+
+    user_id = mysession["userid"]
+    data = request.json
+
+    # Validate the incoming data
+    if not data or 'title' not in data or 'goal' not in data:
+        return jsonify({"message": "Missing data"}), 400
+
+    title = data['title']
+    goal = data['goal']
+
+    # Insert the new goal into the database
+    try:
+        result = supabase.table('Goals').insert({
+            "userid": user_id,
+            "title": title,
+            "goal": goal
+        }).execute()
+
+        if result.error:
+            return jsonify({"message": "Database error", "details": str(result.error)}), 500
+
+        return jsonify({"message": "Goal created successfully", "goal": result.data}), 201
+    except Exception as e:
+        return jsonify({"message": "An error occurred", "details": str(e)}), 500
+
+
 
 #Runs the server
 if __name__ == "__main__":

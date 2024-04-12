@@ -11,10 +11,10 @@ import trashData from "/src/animations/trashcan.json"
 import { TbTrashX } from "react-icons/tb";
 
 
+
 export default function MyChat() { 
     //Used to store the information from the advice table
     const [advises, setAdvises] = useState([]);
-    const [prompt, setPrompt] = useState("");
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false); //Controls the loading screen
     const [inputValue, setInputValue] = useState(''); //Holds the input value
@@ -59,6 +59,7 @@ export default function MyChat() {
         setInputValue(e.target.value);
     };
     
+    //Controls the sent input value
     const handleSend = async () => {
         if (!inputValue.trim()) return; // Check if the input is not just empty spaces
     
@@ -71,21 +72,29 @@ export default function MyChat() {
             fetchData(); //Triggers the rerender
             setInputValue(''); // Clear the input field after sending
             setIsLoading(false); // Stop loading regardless of success or error
+            setSelectedAdvise(null) //Rerenders everything if selected advice was choose
         } catch (error) {
             // Handle error
             console.error('Error sending message:', error);
         }
-    
+        
         setInputValue(''); // Clear the input field after sending
         setIsLoading(false); // Stop loading regardless of success or error
     };
     ///////////////////////////////////////////////////////////////////////////////////////////////
     
-     // Function to handle clicking on a menu item
-     const handleMenuItemClick = (adviseId) => {
-        const selectedAdvice = advises.find(advise => advise.id === adviseId);
-        setSelectedAdvise(selectedAdvice);
-    };
+    // Function to handle clicking on a menu item
+const handleMenuItemClick = (adviseId) => {
+  if (selectedAdvise && selectedAdvise.id === adviseId) {
+      // If the selected advice is already selected, set it to null
+      setSelectedAdvise(null);
+  } else {
+      // Find the advice by ID and set it as the selected advice
+      const selectedAdvice = advises.find(advise => advise.id === adviseId);
+      setSelectedAdvise(selectedAdvice);
+  }
+};
+
 
     if (isLoading) {
         return <MyLoadingScreen />;
@@ -106,6 +115,7 @@ export default function MyChat() {
         } finally {
             fetchData();
             setIsLoading(false);
+            setSelectedAdvise(null)
         }
     };
     
@@ -122,26 +132,7 @@ export default function MyChat() {
                   {advises.map((advise, index) => (
                     <MenuItem className="menu-item" key={advise.id} onClick={() => handleMenuItemClick(advise.id)}>
                      <div style={{ display: 'flex', alignItems: 'center' }}>
-  <button key={advise.id}
-    style={{ 
-      marginLeft: '3px', 
-      backgroundColor: "beige",
-      padding: '0', 
-      border: 'none', 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      width: '30',  // Adjust as needed
-      height: '30px'  // Adjust as needed
-    }} 
-    onClick={(event) => handleDelete(advise.id, event)}
-  >
-     <TbTrashX
-    style={{
-      color: "black",
-      fontSize: "30px"
-    }}/>
-  </button>
+  
   <span style={{ marginLeft: '5px' }}>{advise.prompt}</span>
 </div>
 
@@ -155,7 +146,34 @@ export default function MyChat() {
                 {selectedAdvise ? (
             <div className="mt-6 border-t border-gray-100">
               <h3 className="text-base font-semibold leading-7 text-gray-900">
-                {selectedAdvise.prompt}
+              <div style={{
+  display: 'flex', // Enables flexbox
+  alignItems: 'center', // Align items vertically in the center
+  justifyContent: 'space-between' // Space between the text and the button
+}}>
+  <span style={{
+    marginRight: '10px' // Adds some space between the text and the button
+  }}>
+    {selectedAdvise.prompt}
+  </span>
+  <button
+    key={selectedAdvise.id}
+    style={{ 
+      backgroundColor: "beige",
+      padding: '0',
+      border: 'none',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '40px', // Ensure you include units (px)
+      height: '40px' // Ensure you include units (px)
+    }} 
+    onClick={(event) => handleDelete(selectedAdvise.id, event)}
+  >
+      <Lottie animationData={trashData} style={{ fontSize: '50px' }} /> {/* Adjust the fontSize to fit your button */}
+
+  </button>
+</div>
               </h3>
               <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
                 {selectedAdvise.response}
@@ -165,10 +183,38 @@ export default function MyChat() {
             advises.map((advise, index) => (
               <div className="mt-6 border-t border-gray-100" key={index}>
                 <h3 className="text-base font-semibold leading-7 text-gray-900">
-                  {advise.prompt}
+                <div style={{
+  display: 'flex', // Enables flexbox
+  alignItems: 'center', // Align items vertically in the center
+  justifyContent: 'space-between' // Space between the text and the button
+}}>
+  <span style={{
+    marginRight: '10px' // Adds some space between the text and the button
+  }}>
+    {advise.prompt}
+  </span>
+  <button
+    key={advise.id}
+    style={{ 
+      backgroundColor: "beige",
+      padding: '0',
+      border: 'none',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '30px', // Ensure you include units (px)
+      height: '30px' // Ensure you include units (px)
+    }} 
+    onClick={(event) => handleDelete(advise.id, event)}
+  >
+      <Lottie animationData={trashData} style={{ fontSize: '40px' }} /> {/* Adjust the fontSize to fit your button */}
+
+  </button>
+</div>
+
                 </h3>
                 <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-                  {advise.response}
+                  {advise.response} 
                 </p>
               </div>
             ))
