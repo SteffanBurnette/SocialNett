@@ -21,22 +21,26 @@ export default function GoalsLayout() {
     }, []); // Empty dependency array ensures this runs once on mount
 
     return (
-        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <div id="lottie-bg" style={{
-                  position: 'absolute',
-                  width: '500px', // Set the width of the animation
-                  height: '500px', // Set the height of the animation
-                  zIndex: 1,
-                  left: '50%', // Center horizontally
-                  top: '50%', // Center vertically
-                  transform: 'translate(-50%, -50%)' // Adjust the position to truly center
-            }}></div>
-            <div style={{ position: 'relative', zIndex: 1 }}>
-                <MyNavLink />
-                <MyGoals />
-                <Outlet />
-            </div>
-        </div>
+        <div style={{ position: 'relative', width: '100%', height: '97vh', overflow: 'hidden' }}>
+    <div id="lottie-bg" style={{
+        position: 'absolute',
+        width: '80%',  // Full width for better background coverage
+        height: '80vh', // Full viewport height
+        zIndex: 0,       // Lower z-index since this is background
+        left: 0,
+        top: 0
+    }}></div>
+    <div style={{
+        position: 'relative',
+        zIndex: 2, // Higher z-index to ensure this content is above the background
+        width: '100%',
+        height: '100vh',
+        overflow: 'auto', // Allows scrolling within this container if needed
+    }}>
+        <MyGoals />
+    </div>
+</div>
+
     );
 }
 

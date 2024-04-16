@@ -3,7 +3,7 @@ import axios from "axios"
 import "./mychat.css"
 import MyLoadingScreen from "./MyLoadingScreen.jsx"
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import "./loading.css"
+
 import Lottie from "lottie-react"
 import animationData from "/src/animations/playbutton.json"
 import { GiAbstract066 } from "react-icons/gi";

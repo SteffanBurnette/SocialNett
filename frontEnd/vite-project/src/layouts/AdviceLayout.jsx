@@ -7,7 +7,17 @@ import "./advice.css"
 import MyChat from "/src/myComponents/MyChat.jsx"
 import {useEffect} from "react"
 import lottie from 'lottie-web'; // Use lottie-web for JSON animations
+import { Flex, Layout } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
 
+const contentStyle = {
+    textAlign: 'center',
+    minHeight: 'calc(100vh - 200px)', // Adjust based on the total header and footer height
+    lineHeight: '120px',
+    
+    flexGrow: 1, /* Allows content to expand and fill available space */
+  overflowY: "auto", /* Adds scroll to content if overflow */
+  };
 
 export default function AdviceLayout(){
     //<Lottie animationData = {animationData}  style={{ width: '400px', height: '400px' }}/>
@@ -27,6 +37,9 @@ export default function AdviceLayout(){
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Layout style={{ flex: 1, display: 'flex', flexDirection: 'column' }}> {/* Ensures layout is flex and column direction */}
+        
+        
         <div id="lottie-bg" style={{
               position: 'absolute',
               width: '600px', // Set the width of the animation
@@ -37,12 +50,13 @@ export default function AdviceLayout(){
               transform: 'translate(-50%, -50%)' // Adjust the position to truly center
         }}></div>
         <div style={{ position: 'relative', zIndex: 1 }}>
-            <MyNavLink />
+            
            
 
                <MyChat/>
            </div>
-        
+          
+           </Layout>
     </div>
     );
     

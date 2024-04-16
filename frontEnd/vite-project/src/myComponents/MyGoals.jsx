@@ -166,11 +166,11 @@ const handleDelete = async (id, event) => {
     <>{isLoading ? (
       <div className="loading-screen"><MyLoadingScreen/></div>
     ) : (
-    <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+    <Grid sx={{ flexGrow: 1,}} container spacing={2} >
       <Grid item xs={12} style={{ height: '500px', overflowY: 'auto' }}>
         <Grid container justifyContent="center" spacing={spacing}>
           {goals.map((goal) => (
-            <Grid key={goal.id} item>
+            <Grid key={goal.id} item >
               <Card variant="outlined" sx={{ maxWidth: 360, bgcolor: 'rgba(128, 128, 128, 0.5)' }}>
                 <Box sx={{ p: 2 }}>
                   <Stack direction="row" justifyContent="space-between" alignItems="center">

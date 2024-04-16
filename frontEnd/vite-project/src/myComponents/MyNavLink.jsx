@@ -1,4 +1,4 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 import "./mynavlink.css"
 import axios from "axios"
 
@@ -19,7 +19,29 @@ export default function MyNavLink(){
 
 
     return(
+       
         <header>
+        <h1>
+            <NavLink to = "/mainpage">Home</NavLink>
+            <NavLink to = "/advicepage">Advisor</NavLink>
+            <NavLink to = "/goalpage">Goals</NavLink>
+            <NavLink to = "/" onClick = {handleLogout}>Logout</NavLink>
+        </h1>
+    </header>
+       
+    )
+}
+
+/**
+ * <div class="page-container">
+    <header>My Header</header>
+    <main>Main Content</main>
+    <footer>Footer</footer>
+</div>
+
+ */
+/**
+ *  <header>
             <h1>
                 <NavLink to = "/mainpage">Home</NavLink>
                 <NavLink to = "/advicepage">Advisor</NavLink>
@@ -27,5 +49,5 @@ export default function MyNavLink(){
                 <NavLink to = "/" onClick = {handleLogout}>Logout</NavLink>
             </h1>
         </header>
-    )
-}
+       
+ */
