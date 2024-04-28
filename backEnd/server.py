@@ -155,7 +155,7 @@ def delete_advice(id):
 def get_goals():
     
     user_id = mysession["userid"]
-    result = supabase.table('Goals').select('title, goal, id').eq('userid', user_id).execute()
+    result = supabase.table('Goals').select('title, goal, id, isCompleted').eq('userid', user_id).execute()
     if result.data:
         return jsonify(result.data), 200
     else:
@@ -187,9 +187,11 @@ def update_goal(id):
         data = request.json
         updated_goal_data = {
             "title": data.get("title"),
-            "goal": data.get("goal")
+            "goal": data.get("goal"),
+            "isCompleted": data.get("isCompleted"),
+
             # Include other goal fields here if needed
-        }
+        } 
 
         # Update the goal in the database
         result = supabase.table("Goals").update(updated_goal_data).eq("userid", mysession["userid"]).eq("id", id).execute()
@@ -220,13 +222,15 @@ def create_goal():
 
     title = data['title']
     goal = data['goal']
+    isCompleted = data['isCompleted']
 
     # Insert the new goal into the database
     try:
         result = supabase.table('Goals').insert({
             "userid": user_id,
             "title": title,
-            "goal": goal
+            "goal": goal,
+            "isCompleted":isCompleted,
         }).execute()
 
         if result.error:
