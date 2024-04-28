@@ -49,7 +49,7 @@ export default function AdviceLayout(){
               top: '50%', // Center vertically
               transform: 'translate(-50%, -50%)' // Adjust the position to truly center
         }}></div>
-        <div style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ position: 'relative', zIndex: 1, backgroundColor:'beige' }}>
             
            
 

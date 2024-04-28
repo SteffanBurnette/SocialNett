@@ -1,6 +1,6 @@
 /* Style for the header */
 header {
- position:"fixed";    /* Keeps the header at the top */
+ position:fixed;    /* Keeps the header at the top */
     top: 0; /* Aligns the header at the top of the page */
     left: 0; /* Aligns the header to the left */
     width: 100%; /* Makes the header full width */

@@ -15,19 +15,19 @@ import Modal from '@mui/material/Modal';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-import cubeData from "/src/animations/coolCube.json"
-
+import cubeData from "/src/animations/coolCube.json" //cube animation
+import inProgresData from "/src/animations/inProgress.json" //In progress animation
+import completedData from "/src/animations/completed.json" //completed animation
 
 
 
 export default function MyGoals() {
-  const [spacing, setSpacing] = useState(2);
   const [isLoading, setIsLoading] = useState(false); //Controls the loading screen
   const [goals, setGoals] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const initialGoalState = { title: '', goal: '' };
   const [currentGoal, setCurrentGoal] = useState(initialGoalState);
-  const [newGoal, setNewGoal] = useState({ title: '', goal: '' });
+  const [newGoal, setNewGoal] = useState({ title: '', goal: '', isCompleted: false });
   const [openNewGoalModal, setOpenNewGoalModal] = useState(false);
 
 
@@ -48,7 +48,7 @@ const modalStyle = { //The styling of the modal
 
 //Opens the create goal modal
 const handleCreateGoal = () => {
-  setNewGoal({ title: '', goal: '' }); // Reset the form to be empty initially
+  setNewGoal({ title: '', goal: '', isCompleted:false }); // Reset the form to be empty initially
   setOpenNewGoalModal(true); // Correct modal to open
 };
 
@@ -168,14 +168,56 @@ const handleDelete = async (id, event) => {
     ) : (
     <Grid sx={{ flexGrow: 1,}} container spacing={2} >
       <Grid item xs={12} style={{ height: '500px', overflowY: 'auto' }}>
-        <Grid container justifyContent="center" spacing={spacing}>
+        <h3>
+          This Section is used to track your goals and make sure that you complete them.
+        </h3>
+        <Grid container justifyContent="center" spacing={2}>
           {goals.map((goal) => (
             <Grid key={goal.id} item >
               <Card variant="outlined" sx={{ maxWidth: 360, bgcolor: 'rgba(128, 128, 128, 0.5)' }}>
                 <Box sx={{ p: 2 }}>
                   <Stack direction="row" justifyContent="space-between" alignItems="center">
                     <Typography gutterBottom variant="h5" component="div"  sx={{ fontWeight: 'bold' }}>
-                      {goal.title}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      {goal.title}  
+                      {goal.isCompleted ? (
+        <button 
+          key={goal.id}
+          style={{ 
+            marginLeft: '10px', 
+            backgroundColor: "beige",
+            padding: '0', 
+            border: 'none', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            width: '30px',  // Ensure you specify the unit 'px'
+            height: '30px' ,
+            borderRadius: '15px'
+          }}
+        >
+          <Lottie animationData={completedData} style={{ width: '30px', height: '30px' }}/>
+        </button>
+      ) : (
+        <button 
+          key={goal.id}
+          style={{ 
+            marginLeft: '10px', 
+            backgroundColor: "beige",
+            padding: '0', 
+            border: 'none', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            width: '30px',  // Ensure you specify the unit 'px'
+            height: '30px',
+            borderRadius: '15px'
+          }}
+        >
+          <Lottie animationData={inProgresData} style={{ width: '30px', height: '30px' }}/>
+        </button>
+      )}
+      </div>
                     </Typography>
                   </Stack>
                   <Divider />
@@ -219,6 +261,7 @@ const handleDelete = async (id, event) => {
                   >
                     <Lottie animationData={updatearrowData} style={{ width: '30px', height: '30px' }}/>
                   </button>
+                 
                 </Box>
               </Card>
             </Grid>
@@ -300,6 +343,30 @@ const handleDelete = async (id, event) => {
     style: { color: 'beige' } // Styles the input text
   }}
           />
+          <TextField  /** The boolean value*/
+    label="Is Completed?"
+    value={currentGoal.isCompleted}
+    defaultValue={currentGoal.isCompleted}
+    onChange={(e) => setCurrentGoal({ ...currentGoal, isCompleted: e.target.value})}
+    fullWidth
+   
+    select
+    SelectProps={{
+      native: true,
+    }}
+    InputLabelProps={{
+      style: {
+        color: 'beige', // Styles the label text
+        borderColor: 'beige', // Adds a beige border to the label
+      }
+    }}
+    InputProps={{
+      style: { color: 'beige' } // Styles the input text
+    }}
+  >
+    <option value={true} style={{color: 'black', backgroundColor: 'beige'}}>True</option>
+    <option value={false} style={{color: 'black', backgroundColor: 'beige'}}>False</option>
+  </TextField>
           <Button type="submit">Update</Button>
         </form>
       </Box>

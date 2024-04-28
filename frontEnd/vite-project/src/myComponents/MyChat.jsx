@@ -10,7 +10,8 @@ import { GiAbstract066 } from "react-icons/gi";
 import trashData from "/src/animations/trashcan.json"
 import { TbTrashX } from "react-icons/tb";
 
-
+//isCompleted
+//isCompleted
 
 export default function MyChat() { 
     //Used to store the information from the advice table
@@ -143,6 +144,7 @@ const handleMenuItemClick = (adviseId) => {
       
               <div className="chat-container"> {/* Chat and input area */}
                 <div className="px-4 sm:px-0 chat-area">
+                
                 {selectedAdvise ? (
             <div className="mt-6 border-t border-gray-100">
               <h3 className="text-base font-semibold leading-7 text-gray-900">
@@ -219,6 +221,12 @@ const handleMenuItemClick = (adviseId) => {
               </div>
             ))
           )}
+          <h3 className="text-base font-semibold leading-7 text-gray-900">Meet your new AI advisor! This bot is designed to assist you in
+                     navigating through your decision-making process. It strives to offer 
+                     the most accurate and useful advice possible, but it's 
+                     always wise to verify the information and conduct your own
+                      research to ensure you make the most informed decisions.
+                  </h3>
                 </div>
                 <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
                   <input 
@@ -244,6 +252,7 @@ const handleMenuItemClick = (adviseId) => {
 >
   <Lottie animationData={animationData} style={{ fontSize: '40px' }} /> {/* Adjust the fontSize to fit your button */}
 </button>
+
 
                 </div>
               </div>
